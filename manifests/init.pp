@@ -41,7 +41,7 @@ class monitoring (
   $pluginpath = '/usr/lib/nagios/plugins'
   Nrpe_command {
     ensure  => present,
-    require => Package['nagios-nrpe-server'],
+    require => Package['nrpe'],
     notify  => Service['nagios-nrpe-server'],
   }
   nrpe_command {"check_disk":
