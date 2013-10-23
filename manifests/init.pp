@@ -41,10 +41,10 @@ class monitoring (
   file {'/usr/share/augeas/lenses/nrpe.aug':
     ensure => present,
     source => 'puppet:///modules/monitoring/nrpe.aug',
-  } ->
+  }
   Nrpe_command {
     ensure  => present,
-    require => Package['nrpe'],
+    require => [Package['nrpe'],File['/usr/share/augeas/lenses/nrpe.aug']],
     notify  => Service['nagios-nrpe-server'],
   }
 
