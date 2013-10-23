@@ -26,7 +26,7 @@ class monitoring (
   }
 
   package {'nrpe':} ->
-  service {'nagios-nrpe-server':
+  service {'nrpe':
     ensure => running,
   }
 
@@ -45,7 +45,7 @@ class monitoring (
   Nrpe_command {
     ensure  => present,
     require => [Package['nrpe'],File['/usr/share/augeas/lenses/nrpe.aug']],
-    notify  => Service['nagios-nrpe-server'],
+    notify  => Service['nrpe'],
   }
 
   # Checks to run:
