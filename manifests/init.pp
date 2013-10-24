@@ -32,7 +32,7 @@ class monitoring (
 
   # NRPE server runs on port 5666
   if $monitor_ip {
-    monitor::remote_ip{$monitor_ip:}
+    monitoring::remote_ip{$monitor_ip:}
   }
 
   # Checks to run:

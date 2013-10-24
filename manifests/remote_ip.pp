@@ -17,7 +17,7 @@
 #  limitations under the License.
 
 # Allow an IP to view NRPE
-define monitor::remote_ip {
+define monitoring::remote_ip {
   $ip = $title
   firewall {"200 allow ${ip} to view NRPE":
     port   => 5666,
