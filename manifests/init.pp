@@ -25,7 +25,7 @@ class monitoring (
     require => Class['epel']
   }
 
-  package {'nagios-nrpe-server':} ->
+  package {'nrpe':} ->
   service {'nagios-nrpe-server':
     ensure => running,
   }
