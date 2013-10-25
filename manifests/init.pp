@@ -30,9 +30,20 @@ class monitoring (
     ensure => running,
   }
 
+  if is_array($monitor_ip) {
+    $allowed_hosts = join($monitor_ip,',')
+  } else {
+    $allowed_hosts = $monitor_ip
+  }
+
   # NRPE server runs on port 5666
   if $monitor_ip {
     monitoring::remote_ip{$monitor_ip:}
+  }
+  augeas {'nrpe allowed_hosts':
+    context => '/files/etc/nagios/nrpe.cfg',
+    changes => "set allowed_hosts ${allowed_hosts}",
+    notify  => Service['nrpe'],
   }
 
   $pluginpath = '/usr/lib64/nagios/plugins'
