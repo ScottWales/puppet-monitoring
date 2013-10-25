@@ -43,6 +43,7 @@ class monitoring (
   augeas {'nrpe allowed_hosts':
     context => '/files/etc/nagios/nrpe.cfg',
     changes => "set allowed_hosts ${allowed_hosts}",
+    require => Package['nrpe'],
     notify  => Service['nrpe'],
   }
 
